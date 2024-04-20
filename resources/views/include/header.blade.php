@@ -1,48 +1,29 @@
-<nav class="navbar navbar-dark bg-dark mb-3">
+<nav class="navbar navbar-expand-lg bg-light fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Offcanvas dark navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+      <a class="navbar-brand fw-semibold" href="{{route('home')}}">1ProjectAWeek</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav text-end">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+          </li>
+          @auth
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+              <a class="nav-link"  href="{{route('logout')}}">Logout</a>
             </li>
+          @elseguest
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{{route('login')}}">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{{route('signup')}}">Sign Up</a>
+              <a class="nav-link" href="{{route('login')}}">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{{route('logout')}}">Logout</a>
+              <a class="nav-link" href="{{route('signup')}}">Sign Up</a>
             </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="d-flex mt-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
-          </form>
-        </div>
+          @endauth
+        </ul>
       </div>
+
+      
     </div>
   </nav>

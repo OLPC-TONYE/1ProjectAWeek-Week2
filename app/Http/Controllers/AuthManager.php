@@ -20,9 +20,10 @@ class AuthManager extends Controller
 
     function handle_login_form(Request $request) {
         $request->validate([
-            'login_email' => 'required|',
+            'login_email' => 'required|email',
             'login_password' => 'required'
         ]);
+
         $credentials = ['email'=> $request['login_email'], 'password'=> $request['login_password']];
         if(Auth::attempt($credentials)){
             return redirect()->intended(route('home'));
@@ -35,16 +36,17 @@ class AuthManager extends Controller
         $request->validate([
             'signup_username' => 'required',
             'signup_email' => 'required|email|unique:users,email',
-            'signup_password' => 'required'
+            'signup_password' => 'required|confirmed',
         ]);
 
         $data['name'] = $request->signup_username;
         $data['email'] = $request->signup_email;
         $data['password'] = Hash::make($request->signup_password);
+
         $user = User::create($data);
 
         if(!$user) {
-            return redirect(route('signup'))->with('error', 'Failed To Sign You Up, Please Try Again');
+            return redirect(route('signup'))->with('sign_error', 'Failed To Sign You Up, Please Try Again');
         }
 
         return redirect(route('login'))->with('continue_login', 'Successful Signup. You can now Login');
